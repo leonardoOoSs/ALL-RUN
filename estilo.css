@@ -1,0 +1,197 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #000;
+    color: #fff;
+}
+
+header .banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #333;
+    color: white;
+    padding: 30px;
+}
+
+header .banner .logo {
+    height: 130px;
+}
+
+main {
+    margin: 20px;
+}
+
+.productos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Espacio uniforme entre productos */
+}
+
+.producto {
+    flex: 1 1 calc(25% - 20px); /* 4 productos por fila con espacio entre ellos */
+    box-sizing: border-box; /* Incluye el padding y el border en el ancho total */
+    background-color: #fff;
+    color: #000;
+    padding: 15px; /* Mayor padding para mejorar el espaciado interno */
+    border: 1px solid #ddd;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    min-height: 350px; /* Aumentado para mejor uniformidad */
+}
+
+.producto:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3); /* Sombra más pronunciada */
+}
+
+.producto img {
+    max-width: 100%; /* Ajusta la imagen al ancho del contenedor */
+    height: auto; /* Mantiene la proporción de la imagen */
+    display: block; /* Elimina el espacio debajo de la imagen */
+    margin-bottom: 15px; /* Espacio debajo de la imagen */
+}
+
+button.agregar {
+    background-color: #007bb5; /* Color de fondo más oscuro */
+    color: white;
+    padding: 8px 12px; /* Mayor padding para un mejor tamaño */
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+button.agregar:hover {
+    background-color: #005f8d; /* Color de fondo aún más oscuro */
+    transform: scale(1.1);
+}
+
+input.cantidad {
+    width: 60px; /* Ajustado para un mejor tamaño en móviles */
+    margin: 5px 0;
+    padding: 8px; /* Mayor padding para mejorar la usabilidad */
+    text-align: center;
+}
+
+.social-media {
+    display: flex;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.social-media a {
+    margin-right: 30px;
+
+}
+
+.redes-sociales a {
+    margin: 30px 0; /* Espacio más grande entre iconos */
+}
+
+.redes-sociales .logo-red {
+    width: 50px; /* Iconos más grandes para mejor visibilidad */
+    height: 50px;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 15px 0; /* Mayor padding para mejor visibilidad */
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+button#procederCompra {
+    background-color: #007bb5; /* Color de fondo más oscuro */
+    color: white;
+    padding: 12px 20px; /* Mayor padding para un mejor tamaño */
+    border: none;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+button#procederCompra:hover {
+    background-color: #005f8d; /* Color de fondo aún más oscuro */
+}
+
+@media screen and (max-width: 768px) {
+    main {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .productos {
+        width: 90%;
+    }
+
+    .producto {
+        flex: 1 1 100%; /* En dispositivos pequeños, productos en una sola columna */
+        margin: 10px 0; /* Espacio entre productos en pantallas pequeñas */
+        padding: 15px; /* Mayor padding para móviles */
+    }
+}
+
+/* Estilos del modal de pago */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% auto; /* Ajustado para mejor centramiento */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 90%;
+    max-width: 400px; /* Tamaño reducido para campos más ajustados */
+    position: relative; /* Para posicionar el botón de cierre */
+}
+
+.modal-content .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    color: #888;
+    cursor: pointer;
+}
+
+.modal-content .close:hover {
+    color: #333;
+}
+
+.form-pago label {
+    display: block;
+    margin: 10px 0 5px; /* Mayor margen para mejorar la separación */
+}
+
+.form-pago input {
+    width: calc(100% - 20px); /* Ajuste para considerar padding y bordes */
+    padding: 8px; /* Ajustado para mejor tamaño */
+    margin-bottom: 10px; /* Ajustado para un mejor espaciado */
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+/* Estilos para el carrito flotante */
+#carritoFlotante {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+#carritoIcono {
+    width: 60px; /* Tamaño del ícono del carrito */
+    height: auto;
+    cursor: pointer;
+}
