@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALL-RUN</title>
+    <link rel="stylesheet" href="estilo.css">
+    <style>
+        /* Añade estilos para la marca de agua en los campos */
+        .form-pago input::placeholder {
+            color: #888; /* Color gris claro para el texto de la marca de agua */
+            font-style: italic; /* Estilo cursiva para diferenciar de texto normal */
+        }
+
+        /* Estilos para el botón de cierre del modal */
+        .modal-content .close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 20px;
+            cursor: pointer;
+            color: #888;
+        }
+
+        .modal-content .close:hover {
+            color: #000;
+        }
+
+        /* Asegúrate de que el modal esté posicionado correctamente */
+        .modal-content {
+            position: relative;
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+        }
+
+        /* Estilos para el carrito flotante */
+        .carrito-flotante {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            width: 300px;
+            background-color: #fff;
+            color: #000;
+            padding: 15px;
+            border: 1px solid #ddd;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            display: none; /* Oculto por defecto */
+            font-family: Arial, sans-serif;
+        }
+
+        .carrito-flotante img {
+            width: 40px; /* Tamaño del ícono */
+            height: auto;
+            vertical-align: middle;
+        }
+
+        .carrito-flotante h2 {
+            font-size: 16px;
+            margin: 0;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .carrito-flotante p {
+            margin: 5px 0;
+        }
+
+        .carrito-flotante button {
+            background-color: #007bb5;
+            color: white;
+            padding: 8px 12px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .carrito-flotante button:hover {
+            background-color: #005f8d;
+        }
+
+        /* Estilos para el botón de apertura del carrito */
+        .boton-carrito {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            background-color: #007bb5;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+            border-radius: 50%;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+
+        .boton-carrito img {
+            width: 50px;
+            height: 50px;
+        }
+
+        /* Estilos para los elementos del carrito */
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 10px 0;
+        }
+
+        .cart-item span {
+            margin-left: 10px;
+        }
+
+        .remove-btn {
+            background-color: #ff4d4d;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        .remove-btn:hover {
+            background-color: #e60000;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="banner">
+            <img src="https://cdn.leonardo.ai/users/abcaa900-89f4-493e-8451-8d704de94425/generations/eb33b0b7-c334-46df-81dd-ee57dc639c23/Leonardo_Phoenix_A_stylized_logo_for_the_sports_brand_ALLRUN_f_0.jpg" alt="Marca" class="logo">
+            <h1>ALL-RUN</h1>
+        </div>
+        <div class="social-media">
+            <a href="https://wa.link/i06880" target="_blank">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/512px-WhatsApp.svg.png" alt="WhatsApp" width="50" height="50">
+            </a>
+            <a href="https://www.instagram.com/yo_corroo?igsh=MXNkN2U5cDVmZXdocw==" target="_blank">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Instagram_logo_2022.svg/1000px-Instagram_logo_2022.svg.png" alt="Instagram" width="50" height="50">
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <section class="productos">
+            <h2>Productos</h2>
+            <!-- Productos existentes -->
+            <div class="producto" data-nombre="NEW BALANCE" data-precio="341.00">
+                <img src="https://imagedelivery.net/4fYuQyy-r8_rpBpcY7lH_A/falabellaPE/20218963_3/w=200,h=200,fit=pad" alt="NEW BALANCE - PARA MUJER">
+                <p>NEW BALANCE - PARA MUJER</p>
+                <p>S/ 341.00</p>
+                <input type="number" value="1" min="1" class="cantidad">
+                <button class="agregar">Agregar al Carrito</button>
+            </div>
+            <!-- Agrega aquí los demás productos -->
+            
+
+<div class="producto" data-nombre="Producto 2" data-precio="200">
+                <img src="https://imagedelivery.net/4fYuQyy-r8_rpBpcY7lH_A/falabellaPE/20441812_1/w=200,h=200,fit=pad" alt="ADIDAS - HOMBRE">
+                <p>ADIDAS - HOMBRE</p>
+                <p>S/ 200.00</p>
+                <input type="number" value="1" min="1" class="cantidad">
+                <button class="agregar">Agregar al Carrito</button>
+            </div>
+
+            <div class="producto" data-nombre="ADIDAS RUNNING" data-precio="180">
+                <img src="https://imagedelivery.net/4fYuQyy-r8_rpBpcY7lH_A/falabellaPE/19828881_1/w=200,h=200,fit=pad" alt="Producto 3">
+                <p>ADIDAS RUNNING</p>
+                <p>S/ 180.00</p>
+                <input type="number" value="1" min="1" class="cantidad">
+                <button class="agregar">Agregar al Carrito</button>
+            </div>
+
+            <div class="producto" data-nombre="NIKE AIR MAX EXEE" data-precio="480.90">
+                <img src="https://www.falabella.com.pe/cdn-cgi/imagedelivery/4fYuQyy-r8_rpBpcY7lH_A/falabellaPE/127697616_01/width=480,height=480,quality=70,format=webp,fit=pad" alt="Producto 4">
+                <p>NIKE AIR MAX EXEE</p>
+                <p>S/ 480.90</p>
+                <input type="number" value="1" min="1" class="cantidad">
+                <button class="agregar">Agregar al Carrito</button>
+            </div>
+
+            <div class="producto" data-nombre="NIKE SUPERFLY - 9" data-precio="421.90">
+                <img src="https://imagedelivery.net/4fYuQyy-r8_rpBpcY7lH_A/falabellaPE/5956593_4/w=200,h=200,fit=pad" alt="Producto 5">
+                <p>NIKE SUPERFLY - 9</p>
+                <p>S/ 421.90</p>
+                <input type="number" value="1" min="1" class="cantidad">
+                <button class="agregar">Agregar al Carrito</button>
+            </div>
+
+            <div class="producto" data-nombre="NEW ATHLETIC -CASACA" data-precio="169.00">
+                <img src="https://rimage.ripley.com.pe/home.ripley/Attachment/MKP/469/PMP00003350016/full_image-4.jpeg" alt="Producto 6">
+                <p>NEW ATHLETIC -CASACA</p>
+                <p>S/ 169.00</p>
+                <input type="number" value="1" min="1" class="cantidad">
+                <button class="agregar">Agregar al Carrito</button>
+            </div>
+
+            <div class="producto" NEW ATHLETIC - MOCHILA ARMEX13" data-precio="90.00">
+                <img src="https://rimage.ripley.com.pe/home.ripley/Attachment/MKP/469/PMP00003226935/imagen2-1.jpeg" alt="Producto 7">
+                <p>NEW ATHLETIC - MOCHILA ARMEX13 </p>
+                <p>S/ 90.00</p>
+                <input type="number" value="1" min="1" class="cantidad">
+                <button class="agregar">Agregar al Carrito</button>
+            </div>
+            <div class="producto" data-nombre="GZUCK - POLO HOMBRE" data-precio="120.00">
+                <img src="https://imagedelivery.net/4fYuQyy-r8_rpBpcY7lH_A/falabellaPE/127669472_01/w=800,h=800,fit=pad" alt="Producto 8">
+                <p>GZUCK - POLO HOMBRE</p>
+                <p>S/ 120.00</p>
+                <input type="number" value="1" min="1" class="cantidad">
+                <button class="agregar">Agregar al Carrito</button>
+            </div>
+            <div class="producto" data-nombreLENTES BROWNIKProducto 9" data-precio="97.30">
+                <img src="https://www.gzuck.com/assets/upload/producto/5121202382_1.jpg" alt="Producto 9">
+                <p>LENTES BROWNIK</p>
+                <p>S/ 97.30</p>
+                <input type="number" value="1" min="1" class="cantidad">
+                <button class="agregar">Agregar al Carrito</button>
+            </div>
+            <div class="producto" data-nombre="GZUCK CREW" data-precio="95.00">
+                <img src="https://oechsle.vteximg.com.br/arquivos/ids/13750049-1000-1000/image-1.jpg?v=638114457240900000" alt="Producto 10">
+                <p>GZUCK CREW</p>
+                <p>S/ 95.00</p>
+                <input type="number" value="1" min="1" class="cantidad">
+                <button class="agregar">Agregar al Carrito</button>
+            </div>
+
+            <div class="producto" data-nombreDIADORA - CONJUNTOProducto 11" data-precio="160">
+                <img src="https://www.falabella.com.pe/cdn-cgi/imagedelivery/4fYuQyy-r8_rpBpcY7lH_A/falabellaPE/20187366_1/width=480,height=480,quality=70,format=webp,fit=pad" alt="Producto 11">
+                <p>DIADORA - CONJUNTO</p>
+                <p>S/ 160.00</p>
+                <input type="number" value="1" min="1" class="cantidad">
+                <button class="agregar">Agregar al Carrito</button>
+            </div>
+
+            <div class="producto" data-nombre="ADIDAS - BUZO CONJUNTO" data-precio="259.90">
+                <img src="https://www.falabella.com.pe/cdn-cgi/imagedelivery/4fYuQyy-r8_rpBpcY7lH_A/falabellaPE/20240416_1/width=480,height=480,quality=70,format=webp,fit=pad" alt="Producto 12">
+                <p>ADIDAS - BUZO CONJUNTO</p>
+                <p>S/ 259.90</p>
+                <input type="number" value="1" min="1" class="cantidad">
+                <button class="agregar">Agregar al Carrito</button>
+            </div>
+
+            <div class="producto" data-nombre="CONJUNTO DE MUJER" data-precio="179.99">
+                <img src="https://home.ripley.com.pe/Attachment/WOP_5/2020327905961/2020327905961-3.jpg" alt="Producto 13">
+                <p>PUMA - CONJUNTO DE MUJER</p>
+                <p>S/ 179.99</p>
+                <input type="number" value="1" min="1" class="cantidad">
+                <button class="agregar">Agregar al Carrito</button>
+            </div>
+
+            <div class="producto" data-nombre="PUMA - CONJUNTO" data-precio="239">
+                <img src="https://www.falabella.com.pe/cdn-cgi/imagedelivery/4fYuQyy-r8_rpBpcY7lH_A/falabellaPE/131984892_01/width=480,height=480,quality=70,format=webp,fit=pad" alt="Producto 14">
+                <p>PUMA - CONJUNTO</p>
+                <p>S/ 239.00</p>
+                <input type="number" value="1" min="1" class="cantidad">
+                <button class="agregar">Agregar al Carrito</button>
+            </div>
+
+            <div class="producto" data-nombre="Producto 15" data-precio="115">
+                <img src="https://home.ripley.com.pe/Attachment/WOP_5/2020302149083/2020302149083_2.jpg" alt="NIKE - POLERON">
+                <p>NIKE - POLERON</p>
+                <p>S/ 115.00</p>
+                <input type="number" value="1" min="1" class="cantidad">
+                <button class="agregar">Agregar al Carrito</button>
+            </div>
+
+            <div class="producto" data-nombre="PUMA - TOMATODO" data-precio="48.99">
+                <img src="data:image/jpeg;base64,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" alt="Producto 16">
+                <p>PUMA - TOMATODO</p>
+                <p>S/ 48.99</p>
+                <input type="number" value="1" min="1" class="cantidad">
+                <button class="agregar">Agregar al Carrito</button>
+            </div>
+
+            <div class="producto" data-nombre="ADIDAS - SHORT DE FUTBOL" data-precio="69.30">
+                <img src="https://home.ripley.com.pe/Attachment/WOP_5/2020328390698/2020328390698-2.jpg" alt="Producto 17">
+                <p>ADIDAS - SHORT DE FUTBOL</p>
+                <p>S/ 69.30</p>
+                <input type="number" value="1" min="1" class="cantidad">
+                <button class="agregar">Agregar al Carrito</button>
+            </div>
+            <div class="producto" data-nombre="FILA - SHORT" data-precio="49.99">
+                <img src="https://home.ripley.com.pe/Attachment/WOP_5/2020304996371/2020304996371-2.jpg" alt="Producto 18">
+                <p>FILA - SHORT</p>
+                <p>S/ 49.99</p>
+                <input type="number" value="1" min="1" class="cantidad">
+                <button class="agregar">Agregar al Carrito</button>
+            </div>
+            <div class="producto" data-nombre="NIKE - SHORT ICON FUTURA" data-precio="69.90">
+                <img src="https://home.ripley.com.pe/Attachment/WOP_5/2020287727740/2020287727740_2.jpg" alt="Producto 19">
+                <p>NIKE - SHORT ICON FUTURA </p>
+                <p>S/ 69.90</p>
+                <input type="number" value="1" min="1" class="cantidad">
+                <button class="agregar">Agregar al Carrito</button>
+            </div>
+            <div class="producto" data-nombre="NIKE- MEDIASX2" data-precio="69.90">
+                <img src="https://home.ripley.com.pe/Attachment/WOP_5/2020291591931/2020291591931-2.jpg" alt="Producto 20">
+                <p>NIKE- MEDIASX2</p>
+                <p>S/ 69.90</p>
+                <input type="number" value="1" min="1" class="cantidad">
+                <button class="agregar">Agregar al Carrito</button>
+            </div>
+
+            <div class="producto" data-nombre="SKEMEI - RELOJ" data-precio="100">
+                <img src="https://www.falabella.com.pe/cdn-cgi/imagedelivery/4fYuQyy-r8_rpBpcY7lH_A/falabellaPE/125282816_01/width=480,height=480,quality=70,format=webp,fit=pad" alt="Producto 21">
+                <p>SKEMEI - RELOJ</p>
+                <p>S/ 100.00</p>
+                <input type="number" value="1" min="1" class="cantidad">
+                <button class="agregar">Agregar al Carrito</button>
+            </div>
+            <div class="producto" data-nombre="NAVI FORCE - RELOJ DEPORTIVOS" data-precio="119.80">
+                <img src="https://www.falabella.com.pe/cdn-cgi/imagedelivery/4fYuQyy-r8_rpBpcY7lH_A/falabellaPE/131956132_01/width=480,height=480,quality=70,format=webp,fit=pad" alt="Producto 22">
+                <p>NAVI FORCE - RELOJ DEPORTIVOS</p>
+                <p>S/ 119.80</p>
+                <input type="number" value="1" min="1" class="cantidad">
+                <button class="agregar">Agregar al Carrito</button>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <div class="producto" data-nombre="Producto 23" data-precio="75">
+                <img src="https://www.falabella.com.pe/cdn-cgi/imagedelivery/4fYuQyy-r8_rpBpcY7lH_A/falabellaPE/122492823_01/width=480,height=480,quality=70,format=webp,fit=pad" alt="Producto 23">
+                <p>CASIO - W 800h</p>
+                <p>S/ 187.00</p>
+                <input type="number" value="1" min="1" class="cantidad">
+                <button class="agregar">Agregar al Carrito</button>
+            </div>
+        </section>
+    </main>
+    
+    <div class="carrito-flotante" id="carrito-flotante">
+        <h2>Carrito</h2>
+        <div id="carrito-contenido">
+            <p></p>
+        </div>
+        <p>Total: <span id="carrito-total">S/ 0</span></p>
+        <button id="proceder-compra" disabled>Proceder a la Compra</button>
+    </div>
+    
+    <button class="boton-carrito" id="abrir-carrito">
+        <img src="https://cdn-icons-png.flaticon.com/512/3144/3144456.png" alt="Carrito">
+    </button>
+    
+    <!-- Modal de pago -->
+    <div id="modal-pago" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Detalles de Pago</h2>
+            <form class="form-pago">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" placeholder="Ingresa tu nombre" required>
+                
+                <label for="email">Correo Electrónico:</label>
+                <input type="email" id="email" name="email" placeholder="Ingresa tu correo electrónico" required>
+                
+                <label for="tarjeta">Número de Tarjeta:</label>
+                <input type="text" id="tarjeta" name="tarjeta" placeholder="XXXX-XXXX-XXXX-XXXX" required>
+                
+                <label for="expiracion">Fecha de Expiración:</label>
+                <input type="text" id="expiracion" name="expiracion" placeholder="MM/AA" required>
+                
+                <label for="cvv">CVV:</label>
+                <input type="text" id="cvv" name="cvv" placeholder="XXX" required>
+                
+                <button type="submit">Pagar</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const botonCarrito = document.getElementById('abrir-carrito');
+            const carritoFlotante = document.getElementById('carrito-flotante');
+            const modalPago = document.getElementById('modal-pago');
+            const btnCerrarModal = document.querySelector('.modal-content .close');
+            const carritoContenido = document.getElementById('carrito-contenido');
+            const btnProcederCompra = document.getElementById('proceder-compra');
+            const carritoTotal = document.getElementById('carrito-total');
+
+            botonCarrito.addEventListener('click', function() {
+                carritoFlotante.style.display = carritoFlotante.style.display === 'block' ? 'none' : 'block';
+            });
+
+            const botonesAgregar = document.querySelectorAll('.producto .agregar');
+            botonesAgregar.forEach(function(boton) {
+                boton.addEventListener('click', function() {
+                    const producto = boton.closest('.producto');
+                    const nombre = producto.getAttribute('data-nombre');
+                    const precio = parseFloat(producto.getAttribute('data-precio'));
+                    const cantidad = parseInt(producto.querySelector('.cantidad').value);
+
+                    const item = document.createElement('div');
+                    item.classList.add('cart-item');
+                    item.innerHTML = `
+                        <img src="${producto.querySelector('img').src}" alt="${nombre}" width="50">
+                        <span>${nombre} - S/ ${precio} x ${cantidad}</span>
+                        <button class="remove-btn">Eliminar</button>
+                    `;
+
+                    carritoContenido.appendChild(item);
+
+                    // Muestra el carrito flotante
+                    carritoFlotante.style.display = 'block';
+
+                    // Añade la funcionalidad para eliminar productos
+                    item.querySelector('.remove-btn').addEventListener('click', function() {
+                        item.remove();
+                        if (!carritoContenido.querySelector('.cart-item')) {
+                            carritoContenido.innerHTML = '<p>No hay productos en el carrito.</p>';
+                        }
+                        actualizarTotalCarrito(); // Actualiza el total después de eliminar un producto
+                        actualizarBotonCompra();
+                    });
+
+                    // Actualiza el total del carrito
+                    actualizarTotalCarrito();
+                    // Actualiza el botón de proceder a la compra
+                    actualizarBotonCompra();
+                });
+            });
+
+            // Función para actualizar el total del carrito
+            function actualizarTotalCarrito() {
+                let total = 0;
+                carritoContenido.querySelectorAll('.cart-item').forEach(function(item) {
+                    const precioTexto = item.querySelector('span').textContent.split(' x ')[0].split('S/ ')[1];
+                    const cantidad = parseInt(item.querySelector('span').textContent.split(' x ')[1]);
+                    total += parseFloat(precioTexto) * cantidad;
+                });
+                carritoTotal.textContent = `S/ ${total.toFixed(2)}`;
+            }
+
+            // Función para actualizar el botón de proceder a la compra
+            function actualizarBotonCompra() {
+                if (!carritoContenido.querySelector('.cart-item')) {
+                    btnProcederCompra.disabled = true;
+                } else {
+                    btnProcederCompra.disabled = false;
+                }
+            }
+
+            // Al hacer clic en el botón de proceder a la compra, muestra el modal de pago
+            btnProcederCompra.addEventListener('click', function() {
+                modalPago.style.display = 'block';
+            });
+
+            // Lógica para cerrar el modal de pago al hacer clic fuera del contenido
+            window.addEventListener('click', function(event) {
+                if (event.target == modalPago) {
+                    modalPago.style.display = 'none';
+                }
+            });
+
+            // Lógica para cerrar el modal de pago al hacer clic en el botón de cerrar
+            btnCerrarModal.addEventListener('click', function() {
+                modalPago.style.display = 'none';
+            });
+
+            // Inicializa el estado del botón de proceder a la compra
+            actualizarBotonCompra();
+        });
+    </script>
+</body>
+</html>
